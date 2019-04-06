@@ -9,13 +9,13 @@ class _MyProductsState extends State<ProductsList> {
   var productList = [
     {
       "name": "Blazer",
-      "picture": "images/products/blazer1.jpeg",
+      "picture": "assets/products/blazer1.jpeg",
       "oldPrice": "340",
       "newPrice": "300"
     },
     {
       "name": "Red Dress",
-      "picture": "images/products/dress1.jpeg",
+      "picture": "assets/products/dress1.jpeg",
       "oldPrice": "120",
       "newPrice": "85"
     },
@@ -23,18 +23,21 @@ class _MyProductsState extends State<ProductsList> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: productList.length,
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      itemBuilder: (BuildContext context, int index) {
-        return Product(
-          productName: productList[index]['name'],
-          productPic: productList[index]['picture'],
-          productOldPrice: productList[index]['oldPrice'],
-          productNewPrice: productList[index]['newPrice'],
-        );
-      },
+    return Container(
+      child: GridView.builder(
+        shrinkWrap: true,
+        itemCount: productList.length,
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (BuildContext context, int index) {
+          return Product(
+            productName: productList[index]['name'],
+            productPic: productList[index]['picture'],
+            productOldPrice: productList[index]['oldPrice'],
+            productNewPrice: productList[index]['newPrice'],
+          );
+        },
+      ),
     );
   }
 }
@@ -70,12 +73,12 @@ class Product extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     title: Text(
-                      productNewPrice,
+                      "\u20B9$productNewPrice",
                       style: TextStyle(
                           color: Colors.red, fontWeight: FontWeight.w800),
                     ),
                     subtitle: Text(
-                      productOldPrice,
+                      "\u20B9$productOldPrice",
                       style: TextStyle(
                           color: Colors.black54,
                           fontWeight: FontWeight.w800,

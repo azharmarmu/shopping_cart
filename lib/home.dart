@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
         categoryTitleWidget,
         HorizontalList(),
         recentProductTitleWidget,
-        //ProductsList()
+        ProductsList()
       ],
     );
 
