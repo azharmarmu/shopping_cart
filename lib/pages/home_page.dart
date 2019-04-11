@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:shopping_cart/components/horizontal_list.dart';
 import 'package:shopping_cart/components/products_list.dart';
+import 'package:shopping_cart/pages/cart_page.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -112,7 +113,10 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.search, color: Colors.white), onPressed: null),
         IconButton(
             icon: Icon(Icons.shopping_cart, color: Colors.white),
-            onPressed: null)
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Cart()));
+            })
       ],
     );
 
@@ -131,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
         animationCurve: Curves.fastOutSlowIn,
         animationDuration: Duration(milliseconds: 1000),
         dotSize: 4.0,
+        dotBgColor: Colors.transparent,
         indicatorBgPadding: 4.0,
       ),
     );

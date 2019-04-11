@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_cart/pages/product_details.dart';
+import 'package:shopping_cart/pages/product_details_page.dart';
 
 class ProductsList extends StatefulWidget {
   @override
@@ -20,6 +20,30 @@ class _MyProductsState extends State<ProductsList> {
       "oldPrice": "120",
       "newPrice": "85"
     },
+    {
+      "name": "Blazer",
+      "picture": "assets/products/blazer2.jpeg",
+      "oldPrice": "340",
+      "newPrice": "300"
+    },
+    {
+      "name": "Black Dress",
+      "picture": "assets/products/dress2.jpeg",
+      "oldPrice": "120",
+      "newPrice": "85"
+    },
+    {
+      "name": "Strap Heels",
+      "picture": "assets/products/hills1.jpeg",
+      "oldPrice": "340",
+      "newPrice": "300"
+    },
+    {
+      "name": "Kitten Heels",
+      "picture": "assets/products/hills2.jpeg",
+      "oldPrice": "120",
+      "newPrice": "85"
+    },
   ];
 
   @override
@@ -27,15 +51,20 @@ class _MyProductsState extends State<ProductsList> {
     return Container(
       child: GridView.builder(
         shrinkWrap: true,
+        physics: ScrollPhysics(),
+        scrollDirection: Axis.vertical,
         itemCount: productList.length,
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
-          return Product(
-            productName: productList[index]['name'],
-            productPic: productList[index]['picture'],
-            productOldPrice: productList[index]['oldPrice'],
-            productNewPrice: productList[index]['newPrice'],
+          return Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Product(
+              productName: productList[index]['name'],
+              productPic: productList[index]['picture'],
+              productOldPrice: productList[index]['oldPrice'],
+              productNewPrice: productList[index]['newPrice'],
+            ),
           );
         },
       ),
@@ -61,7 +90,7 @@ class Product extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Hero(
-        tag: productName,
+        tag: Text("hero"),
         child: Material(
           child: InkWell(
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
@@ -73,26 +102,28 @@ class Product extends StatelessWidget {
                     ))),
             child: GridTile(
                 footer: Container(
-                  color: Colors.white,
-                  child: ListTile(
-                    leading: Text(
-                      productName,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    title: Text(
-                      "\u20B9$productNewPrice",
-                      style: TextStyle(
-                          color: Colors.red, fontWeight: FontWeight.w800),
-                    ),
-                    subtitle: Text(
-                      "\u20B9$productOldPrice",
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontWeight: FontWeight.w800,
-                          decoration: TextDecoration.lineThrough),
-                    ),
-                  ),
-                ),
+                    color: Colors.white70,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            productName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "\u20B9$productNewPrice",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    )),
                 child: Image.asset(productPic, fit: BoxFit.cover)),
           ),
         ),
